@@ -11,7 +11,7 @@ function Card(props) {
                     <div className="card_info">
                         <h5 className="card_title"> {props.name} </h5>
                         <p className="card_text"> {props.email} </p>
-                        <NavLink to="/search" target="_blank">
+                        <NavLink to="/search">
                             <button>Get Details</button>
                         </NavLink>
                     </div>

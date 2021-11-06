@@ -27,7 +27,7 @@ const Sresult = (props) => {
     {
         return (
             <>
-                <h1>User Not Found</h1>
+                <h1 className="usernotfound">User Not Found</h1>
             </>
         )
     }

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Userdetails(props) {
     return (
@@ -12,9 +13,9 @@ function Userdetails(props) {
                         <h5 className="card_title"> {props.phone} </h5>
                         <h5 className="card_title"> {props.address} </h5>
                         <p className="card_text"> {props.email} </p>
-                        <a href="/" target="_blank">
+                        <NavLink to="/">
                             <button>Go Home</button>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </div>
