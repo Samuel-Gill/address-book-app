@@ -4,6 +4,8 @@ import "core-js";
 import { Card } from 'antd';
 import 'antd/dist/antd.less';
 const { Meta } = Card;
+import { Row, Col } from 'antd';
+
 
 function Cards() {
 
@@ -41,18 +43,32 @@ function Cards() {
 
     return (
         <>
-            <div className="cards">
+            {/* <Row gutter={[24, 24]}>
+                <Col span={8} push={2}> */}
+                    <Card
+                        hoverable
+                        style={{ width: 240 }}
+                        cover={<img alt="example" src={data.picture} />}
+                    >
+                        <Meta title={data.fname} description={data.email} />
+                        <p>Nationality: {data.nat}</p>
+                    </Card>
+                {/* </Col> */}
+                {/* <Col span={8} push={2}>Column 2 </Col>
+                <Col span={8} push={2}>Column 3 </Col> */}
+            {/* </Row> */}
+            {/* <div className="cards">
                 <div className="card">
-                <Card
-                    hoverable
-                    style={{ width: 240 }}
-                    cover={<img alt="example" src={data.picture} />}
-                >
-                    <Meta title={data.fname} description={data.email} />
-                    <p>Nationality: {data.nat}</p>
-                </Card>
-            </div>
-            </div>
+                    <Card
+                        hoverable
+                        style={{ width: 240 }}
+                        cover={<img alt="example" src={data.picture} />}
+                    >
+                        <Meta title={data.fname} description={data.email} />
+                        <p>Nationality: {data.nat}</p>
+                    </Card>
+                </div>
+            </div> */}
         </>
     )
 }

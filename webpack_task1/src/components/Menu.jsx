@@ -10,6 +10,8 @@ const Menu = () => {
 				<NavLink exact activeClassName="active_class" to="/"> Home </NavLink>
 				<NavLink exact activeClassName="active_class" to="/settings"> Settings </NavLink>
 				<NavLink exact activeClassName="active_class" to="/search"> Search </NavLink>
+				<NavLink exact activeClassName="active_class" to="/redux"> Redux </NavLink>
+				<NavLink exact activeClassName="active_class" to="/api"> api </NavLink>
 			</div>
 		</>
 	);

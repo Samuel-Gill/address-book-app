@@ -4,6 +4,7 @@ import Card from '../components/Cards.jsx';
 import '../index.css';
 import Sdata from '../components/Sdata.jsx';
 import Settings from './Settings.jsx';
+import { Row, Col } from 'antd';
 //import { Card } from 'antd';
 //import 'antd/dist/antd.less';
 //import { Button } from 'antd';
@@ -16,8 +17,19 @@ export default function Home() {
             <h1>Home page</h1>
             {Sdata.map((value, index) => {
                 return (
-
-                    <Card />
+                    <>
+                        <Row gutter={[24, 24]}>
+                            <Col span={8} push={2}>
+                                <Card />
+                            </Col>
+                            <Col span={8} push={2}>
+                                <Card />
+                            </Col>
+                            <Col span={8} push={2}>
+                                <Card />
+                            </Col>
+                        </Row>
+                    </>
                 );
             })}
         </>
