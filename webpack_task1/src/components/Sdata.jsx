@@ -1,0 +1,88 @@
+const Sdata = [
+    {
+        id: 0,
+        name: "Samuel Gill",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "samuel@mail.com",
+    },
+    {
+        id: 1,
+        name: "James Gill",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "james@mail.com",
+    },
+    {
+        id: 2,
+        name: "Mona Liza",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "mona@mail.com",
+    },
+    {
+        id: 3,
+        name: "Steve Jobs",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "steve@mail.com",
+    },
+    {
+        id: 4,
+        name: "Angelina Jolie",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "angelina@mail.com",
+    },
+    {
+        id: 5,
+        name: "Indiana Jones",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "indiana@mail.com",
+    },
+    {
+        id: 6,
+        name: "Simon Girad",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "Simon@mail.com",
+    },
+    {
+        id: 7,
+        name: "Jonas George",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "Jonas@mail.com",
+    },
+    {
+        id: 8,
+        name: "Monica Loren",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "Monica@mail.com",
+    },
+    {
+        id: 9,
+        name: "Mark Zed",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "Mark@mail.com",
+    },
+    {
+        id: 10,
+        name: "Daniel John",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "Daniel@mail.com",
+    },
+    {
+        id: 11,
+        name: "David Jones",
+        phone: 1234567890,
+        address: "DHA phase 5",
+        email: "David@mail.com",
+    },
+];
+
+export default Sdata;
