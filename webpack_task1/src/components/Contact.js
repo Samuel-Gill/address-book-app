@@ -28,6 +28,7 @@ const Contact = ({ contact }) => {
             >
                 <Meta title={`${contact.name.first + " " + contact.name.last}`} description={contact.email} />
                 <p>Nationality: {contact.nat}</p>
+                <p>User Name: {contact.login.username}</p>
                 <Button type="primary" onClick={showModal}>
                     Get Details
                 </Button>
@@ -40,11 +41,12 @@ const Contact = ({ contact }) => {
                         <Meta title={`${contact.name.first + " " + contact.name.last}`} />
                         <p>Nationality: {contact.nat}</p>
                         <p>Email: {contact.email}</p>
-                        <p>Phone: {contact.phone}</p>
+                        <p>Phone: {contact.cell}</p>
+                        <p>Cell: {contact.phone}</p>
                         <p>Street: {`${contact.location.street.number + " " + contact.location.street.name}`}</p>
                         <p>City: {contact.location.city}</p>
                         <p>State: {contact.location.state}</p>
-                        <p>Postcpde: {contact.location.postcode}</p>
+                        <p>Postcode: {contact.location.postcode}</p>
                         <p>Country: {contact.location.country}</p>
                     </Card>
                 </Modal>
