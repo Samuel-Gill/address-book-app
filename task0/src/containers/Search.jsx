@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import Sdata from "./Sdata";
-import Sresult from "./Sresult";
+import Sdata from "../components/Sdata";
+import Sresult from "../components/Sresult";
 
  const Search = (props) => {
     const [name, setName] = useState("");
