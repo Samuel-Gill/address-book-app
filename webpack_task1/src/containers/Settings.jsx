@@ -1,69 +1,84 @@
 import React, { useEffect, useState } from "react";
+import { Select, Button } from 'antd';
+import { Row, Col } from 'antd';
+const { Option } = Select;
 import { NavLink } from "react-router-dom";
-import { Card } from "antd";
-import 'antd/dist/antd.less';
-const { Meta } = Card;
-import Sdata from "../components/Sdata.jsx";
+import 'antd/dist/antd.css';
+import { setNationality } from "../actions";
+import { useSelector, useDispatch } from "react-redux";
+
+
 
 function Settings(props) {
 
-    const [data, setData] = useState({
-        fname: '',
-        lname: '',
-        email: '',
-        picture: '',
-        nat: ''
-    });
+    const [nat, setNat] = useState();
 
-    console.log(props.nat);
+    // it alternative to the useContext hooks in react / consumer from context API
+    const changeNationality = useSelector(state => state.changeNationality);
 
-    useEffect(() => {
-        console.log("----------------name", props.nat);
-    }, [props.nat]);
+    const dispatch = useDispatch();
 
-    const getUserData = async () => {
-        try {
-            //console.log(props.name);
-            const res = await fetch(`https://randomuser.me/api/?nat=${props.nat}`);
-            const actualData = await res.json();
-            console.log(actualData.results[0].nat);
-            console.log(" " + actualData.results[0].name.first);
-
-            //setData(actualData.results[0].name);
-
-            const userData = actualData.results[0];
-
-            setData({ ...data, fname: userData.name.first, lname: userData.name.last, email: userData.email, picture: userData.picture.large, nat: userData.nat });
-            //const f_name = actualData.results[0].name.first;
-            //const l_name = actualData.results[0].name.last;
-            console.log("    ");
-        } catch (error) {
-            console.log(error);
-        }
+    function onChange(value) {
+        console.log(`selected ${value}`);
+        setNat(value);
     }
 
-    useEffect(() => {
-        getUserData();
-    }, []);
+    function onBlur() {
+        console.log('blur');
+    }
+
+    function onFocus() {
+        console.log('focus');
+    }
+
+    function onSearch(val) {
+        console.log('search:', val);
+    }
 
     return (
         <>
-            {Sdata.map((value, index) => {
-                return (
-                    <div className="cards">
-                        <div className="card">
-                            <Card
-                                hoverable
-                                style={{ width: 240 }}
-                                cover={<img alt="example" src={data.picture} />}
-                            >
-                                <Meta title={data.fname} description={data.email} />
-                                <p>Nationality: {data.nat}</p>
-                            </Card>
-                        </div>
-                    </div>
-                );
-            })}
+            <br />
+            <Row>
+                <Col span={12} offset={10}>
+
+                    <h1>You choose {changeNationality} as Nationality</h1>
+                    <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select a nationality"
+                        optionFilterProp="children"
+                        onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option value="AU">AU</Option>
+                        <Option value="BR">BR</Option>
+                        <Option value="CA">CA</Option>
+                        <Option value="CH">CH</Option>
+                        <Option value="DE">DE</Option>
+                        <Option value="DK">DK</Option>
+                        <Option value="ES">ES</Option>
+                        <Option value="FI">FI</Option>
+                        <Option value="FR">FR</Option>
+                        <Option value="GB">GB</Option>
+                        <Option value="IE">IE</Option>
+                        <Option value="IR">IR</Option>
+                        <Option value="NO">NO</Option>
+                        <Option value="NL">NL</Option>
+                        <Option value="NZ">NZ</Option>
+                    </Select>
+                    <NavLink to="/">
+                        <Button type="primary" onClick={() => dispatch(setNationality(nat))}>
+                            Search
+                        </Button>
+                    </NavLink>
+                </Col>
+            </Row>
+            <br />
         </>
     )
 }

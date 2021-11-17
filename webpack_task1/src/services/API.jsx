@@ -1,93 +1,88 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import { Card } from 'antd';
 import Contact from '../components/Contact';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSelector } from "react-redux";
+import { Input, Space } from 'antd';
+const { Search } = Input;
 
+let data_length = 15;
 export const API = () => {
     const [nat, setNat] = useState();
-    const [contacts, setContacts] = useState();
+    const [contacts, setContacts] = useState('');
+    const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [results, setResults] = useState(15);
 
-    const Nationality = (e) => {
-        setNat(e.target.value);
-    }
-
-    async function getUserData() {
-        const res = await axios.get(`https://randomuser.me/api/?nat=${nat}`);
-        console.log(res.data.results[0].name.first);
-        const api_name = res.data.results[0].name.first;
-        const user_name = nat;
-        // if (api_name.toLoweCase() == user_name.toLoweCase())
-        // {
-        //     console.log("usermached");
-        // }
-        // else{
-        //     console.log("not matched")
-        // }
-        console.log(res.data.results[0].nat);
-    }
-
-    // const Contacts = () => {
-    //     useEffect(() => {
-    //         getContacts();
-    //     },[]);
-    // }
+    // it alternative to the useContext hooks in react / consumer from context API
+    const changeNationality = useSelector(state => state.changeNationality);
 
     const getContacts = async () => {
         try {
-            const res = await axios.get(`https://randomuser.me/api/?results=100`);
+            const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${changeNationality}`);
             console.log(res.data.results);
-            setContacts(res.data.results);
-            setLoading(true);
+            console.log(res.data.results.length);
+            data_length = res.data.results.length;
+            console.log("data length" + data_length);
+            setContacts([...contacts, ...res.data.results]);
+
+            var delayInMilliseconds = 500; //0.5 second
+
+            setTimeout(function () {
+                //Loading is artifically delayed for 0.5 second
+                setLoading(true);
+            }, delayInMilliseconds);
+
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
+    }
 
+    const onSearch = value => 
+    {
+        console.log(value);
+        setSearchInput(value.toLowerCase());
     }
 
     useEffect(() => {
-        getUserData();
         getContacts();
-    }, []);
+    }, [results, nat]);
 
 
+    return !loading ? (<h1> Loading ...</h1>) :
+        (
+            <>
+                <br />
+                <Row>
+                    <Col span={12} offset={16}>
 
+                        <Search
+                            placeholder="Search user"
+                            allowClear
+                            enterButton="Search"
+                            size="large"
+                            onSearch={onSearch}
+                            style={{ width: "51.5%" }}
+                        />
+                    </Col>
+                </Row>                       
+                <br />
 
-
-    return (
-        <>
-            {/* <h1>You choose {nat} as Nationality</h1>
-            
-            <select
-            value={nat}
-            onChange={Nationality}
-            >
-                <option value="AU">AU</option>
-                <option value="BR">BR</option>
-                <option value="CA">CA</option>
-                <option value="CH">CH</option>
-                <option value="DE">DE</option>
-                <option value="DK">DK</option>
-                <option value="ES">ES</option>
-                <option value="FI">FI</option>
-                <option value="FR">FR</option>
-                <option value="GB">GB</option>
-                <option value="IE">IE</option>
-                <option value="IR">IR</option>
-                <option value="NO">NO</option>
-                <option value="NL">NL</option>
-                <option value="NZ">NZ</option>
-            </select> */}
-
-            <Row gutter={[24, 24]}>
-                {loading &&
-                    contacts.map((contact) => (
-                        <Col span={8} push={2} key={contact.login.uuid}>
-                            <Contact contact={contact} />
-                        </Col>
-                    ))}
-            </Row>
-        </>
-    )
+                <InfiniteScroll dataLength={data_length} next={() => setResults(results + data_length)} hasMore={true} loader={<h3>Loading...</h3>}>
+                    {
+                        <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 16]}>
+                            {loading &&
+                                contacts.filter((item) => `${item.name.title} ${item.name.first} ${item.name.last}`.toLowerCase().includes(searchInput)).map((contact) => (
+                                    <Col className="gutter-row" xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }} key={contact.login.uuid}>
+                                        <Contact contact={contact} />
+                                    </Col>
+                                ))}
+                        </Row>
+                    }
+                </InfiniteScroll>
+            </>
+        )
 }

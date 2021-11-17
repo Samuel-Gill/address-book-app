@@ -5,6 +5,7 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   
   code {
@@ -137,9 +138,17 @@ body {
   a {
     color: aqua;
   }
+<<<<<<< HEAD
+  
   a.active_class {
     color: white;
   }
+
+=======
+  a.active_class {
+    color: white;
+  }
+>>>>>>> development
   .menu_style {
     width: 100%;
     line-height: 60px;
@@ -148,6 +157,8 @@ body {
     justify-content: space-around;
   
   }
+<<<<<<< HEAD
+=======
 
 
   /* ////////////////////////////////  */
@@ -226,3 +237,4 @@ h4 {
 .quantity__plus:visited {
   color: #fff;
 } */
+>>>>>>> development
