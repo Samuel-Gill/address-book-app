@@ -17,27 +17,15 @@ module.exports = {
             plugins: ['@babel/plugin-transform-runtime']
           }
         }
-        // use: ['babel-loader'],
-        // options: {
-
-        //   presets: ['@babel/preset-env'],
-        //   plugins: ['@babel/plugin-transform-runtime']
-        // }
-        // options: {
-        //   presets: ['react']
-        // }
       },
       {
-        test: /\.(sass|less|css)$/,
+        test: /\.(less|css)$/,
         use: [
           {
             loader: "style-loader",
           },
           {
             loader: "css-loader",
-          },
-          {
-            loader: "sass-loader",
           },
           {
             loader: "less-loader",
@@ -70,7 +58,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index.bundle.js',
-    // publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -81,11 +68,4 @@ module.exports = {
     port: 3050,
     historyApiFallback: true,
   },
-  //   output: {
-  //     path: path.resolve(__dirname, './dist'),
-  //     filename: 'bundle.js',
-  //   },
-  //   devServer: {
-  //     static: path.resolve(__dirname, './dist'),
-  //   },
 };
