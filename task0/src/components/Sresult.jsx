@@ -1,7 +1,7 @@
 import React from "react";
 import Sdata from "./Sdata";
 import Card from './Card';
-import './index.css';
+import '../index.css';
 import Userdetails from "./Userdetails";
 
 const Sresult = (props) => {
