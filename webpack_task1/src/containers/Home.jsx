@@ -19,6 +19,7 @@ const Home = () => {
 
     // it alternative to the useContext hooks in react / consumer from context API
     const changeNationality = useSelector(state => state.changeNationality);
+
     const getContacts = async () => {
         try {
             const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${changeNationality}`);
