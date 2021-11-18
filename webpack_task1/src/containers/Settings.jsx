@@ -55,6 +55,7 @@ function Settings(props) {
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
+                        <Option value="">default</Option>
                         <Option value="AU">AU</Option>
                         <Option value="BR">BR</Option>
                         <Option value="CA">CA</Option>

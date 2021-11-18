@@ -4,11 +4,3 @@ export const setNationality = (nat) => {
         payload: nat
     }
 }
-
-export const getAPI = async (results,page,changeNationality) => {
-    const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${changeNationality}`);
-    return {
-        type: 'API',
-        id: res
-    }
-}

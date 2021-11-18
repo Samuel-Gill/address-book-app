@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '../redux/user/userActions.js'
+import { fetchUsers } from '../redux/actions/userActions.js'
 
 function UsersContainer ({ userData, fetchUsers }) {
     console.log(userData.users);

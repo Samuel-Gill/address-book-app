@@ -10,13 +10,13 @@ let data_length = 50;
 let change_nat = "";
 
 import { connect } from 'react-redux'
-import { fetchUsers } from '../redux/user/userActions.js'
+import { fetchUsers } from '../redux/actions/userActions.js'
 
 const Home = ({ userData, fetchUsers }) => {
     const [nat, setNat] = useState();
     const [contacts, setContacts] = useState('');
     const [searchInput, setSearchInput] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(50);

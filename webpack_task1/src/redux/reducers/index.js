@@ -1,13 +1,11 @@
-import changeNationality from "./nationality";
-import getAPI from "./api";
-import userReducer from '../user/userReducer'
+import changeNationality from "./nationality.js";
+import userReducer from '../reducers/userReducer.js';
 
 import { combineReducers } from "redux";
 
 const reducers = combineReducers(
     {
         changeNationality,
-        getAPI,
         user: userReducer
     }
 );
