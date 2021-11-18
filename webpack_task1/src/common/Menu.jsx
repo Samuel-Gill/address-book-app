@@ -7,6 +7,7 @@ const Menu = () => {
 			<div className="menu_style">
 				<NavLink exact activeClassName="active_class" to="/"> Home </NavLink>
 				<NavLink exact activeClassName="active_class" to="/settings"> Settings </NavLink>
+				<NavLink exact activeClassName="active_class" to="/user"> UsersContainer </NavLink>
 			</div>
 		</>
 	);

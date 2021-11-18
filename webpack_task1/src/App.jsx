@@ -6,6 +6,7 @@ import Settings from "./containers/Settings.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import "./index.css"
+import UsersContainer from "./containers/UsersContainer.js";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Switch>
                     <Route exact path='/' component={() => <><Home /></>} />
                     <Route exact path='/settings' component={() => <><Settings /></>} />
+                    <Route exact path='/user' component={() => <><UsersContainer /></>} />
                 </Switch>
             </Provider>
         </>

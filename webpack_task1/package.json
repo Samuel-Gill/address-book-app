@@ -1,4 +1,4 @@
- {
+{
   "name": "webpacksetup",
   "version": "1.0.0",
   "description": "Initial Webpack setup for react",
@@ -40,6 +40,9 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.0"
   }
 }
