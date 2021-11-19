@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 
 const reducers = combineReducers(
     {
-        changeNationality,
+        nationality: changeNationality,
         user: userReducer
     }
 );

@@ -1,20 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
-import Contact from '../components/Contact';
+import Contact from '../components/Home/Contact';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsersSuccess, fetchUsersFailure, fetchUsersRequest } from '../redux/actions/userActions.js';
 import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
-let data_length = 50;
-let change_nat = "";
 
-import { connect } from 'react-redux'
-import { fetchUsers } from '../redux/actions/userActions.js'
-
-const Home = ({ userData, fetchUsers }) => {
-    const [nat, setNat] = useState();
-    const [contacts, setContacts] = useState('');
+const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [moreData, setMoreData] = useState(true);
@@ -22,25 +16,28 @@ const Home = ({ userData, fetchUsers }) => {
     const [results, setResults] = useState(50);
 
     // it alternative to the useContext hooks in react / consumer from context API
-    const changeNationality = useSelector(state => state.changeNationality);
-    change_nat = changeNationality;
+    const Nationality = useSelector(state => state.nationality);
+    const userData = useSelector(state => state.user);
 
+    const dispatch = useDispatch();
     const getContacts = async () => {
         try {
-            const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${changeNationality}`);
-            console.log(res.data.results);
-            console.log(res.data.results.length);
-            data_length = res.data.results.length;
-            if (data_length > 900)
+            dispatch(fetchUsersRequest());
+            const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${Nationality}`);
+            const users = res.data.results;
+            dispatch(fetchUsersSuccess(users));
+
+            /* Set limit for maxium users */
+            if (res.data.results.length > 900)
             {
                 setMoreData(false);
                 console.log(moreData);
             }
-            console.log("data length" + data_length);
-            setContacts([...contacts, ...res.data.results]);
+            console.log("data length" + userData.users.length);
             setLoading(true);
         } catch (error) {
             console.log(error);
+            dispatch(fetchUsersFailure(error.message));
             setLoading(false);
         }
     }
@@ -52,11 +49,7 @@ const Home = ({ userData, fetchUsers }) => {
 
     useEffect(() => {
         getContacts();
-    }, [results, nat]);
-
-    useEffect(() => {
-        fetchUsers()
-      }, [results, nat])
+    }, [results, Nationality]);
 
     return !loading ? (
         <Row type="flex" justify="center" align="middle" style={{ minHeight: '100vh' }}>
@@ -83,7 +76,7 @@ const Home = ({ userData, fetchUsers }) => {
                 </Row>
                 <br />
 
-                <InfiniteScroll dataLength={data_length} next={() => setResults(results + 50)} hasMore={moreData}
+                <InfiniteScroll dataLength={userData.users.length} next={() => setResults(results+50)} hasMore={moreData}
                     endMessage={
                         <p style={{ textAlign: "center" }}>
                             <b>End of user catalogue!</b>
@@ -107,21 +100,4 @@ const Home = ({ userData, fetchUsers }) => {
         )
 }
 
-const mapStateToProps = state => {
-    return {
-      userData: state.user
-    }
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-      fetchUsers: (nat=change_nat,results=data_length,page=1) => dispatch(fetchUsers(nat,results,page))
-    }
-  }
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Home)
-
-//export default Home;
+export default Home;

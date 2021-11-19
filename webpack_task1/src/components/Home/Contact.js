@@ -26,7 +26,8 @@ const Contact = ({ contact }) => {
                 style={{ width: 240 }}
                 cover={<img alt="example" src={contact.picture.large} />}
             >
-                <Meta title={`${contact.name.first + " " + contact.name.last}`} description={contact.email} />
+                <Meta title={`${contact.name.first + " " + contact.name.last}`} />
+                <p>{contact.email}</p>
                 <p>Nationality: {contact.nat}</p>
                 <p>User Name: {contact.login.username}</p>
                 <Button type="primary" onClick={showModal}>

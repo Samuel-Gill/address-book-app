@@ -4,7 +4,7 @@ import { Row, Col } from 'antd';
 const { Option } = Select;
 import { NavLink } from "react-router-dom";
 import 'antd/dist/antd.css';
-import { setNationality } from "../redux/actions";
+import { setNationality } from "../redux/actions/nationality.js";
 import { useSelector, useDispatch } from "react-redux";
 
 
