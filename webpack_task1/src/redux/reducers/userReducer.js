@@ -20,7 +20,7 @@ import {
       case FETCH_USERS_SUCCESS:
         return {
           loading: false,
-          users: action.payload,
+          users: [...state.users,...action.payload],
           error: ''
         }
       case FETCH_USERS_FAILURE:
