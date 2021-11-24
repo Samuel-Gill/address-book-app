@@ -143,3 +143,15 @@ body {
     justify-content: space-around;
   
   }
+
+  p {
+    text-align: "center"; 
+  }
+
+  .ant-select {
+    width: 200;
+   }
+
+   .ant-input-group-addon {
+     background-color: white;
+   }

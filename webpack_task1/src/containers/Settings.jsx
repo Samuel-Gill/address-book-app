@@ -44,7 +44,6 @@ function Settings(props) {
                     <h1>You choose {changeNationality} as Nationality</h1>
                     <Select
                         showSearch
-                        style={{ width: 200 }}
                         placeholder="Select a nationality"
                         optionFilterProp="children"
                         onChange={onChange}

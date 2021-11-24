@@ -4,32 +4,43 @@ import { Row, Col } from 'antd';
 import Contact from '../components/Home/Contact';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
+import { fetchUsersSuccess, fetchUsersFailure, fetchUsersRequest } from '../redux/actions/userActions.js';
 import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
-import { fetchUsers } from '../redux/actions/userActions.js'
-
 
 const Home = () => {
     const [searchInput, setSearchInput] = useState('');
-    const [dataLength, setDataLength] = useState(50);
+    const [loading, setLoading] = useState(false);
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
-    const [results, setResults] = useState(100);
+    const [results, setResults] = useState(50);
+    const [filter, setFilter] = useState("");
 
     // it alternative to the useContext hooks in react / consumer from context API
     const Nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
 
     const dispatch = useDispatch();
+    const getContacts = async () => {
+        try {
+            dispatch(fetchUsersRequest());
+            const res = await axios.get(`https://randomuser.me/api/?results=${results}&page=${page}&nat=${Nationality}`);
+            const users = res.data.results;
+            dispatch(fetchUsersSuccess(users));
+            
 
-    const fetchMoreData = () => {
-        console.log("Fetch More Data length ");
-        if (userData.users.length > 100) {
-            setMoreData(false);
-        }
-        else {
-            setPage(page+1);
-            setMoreData(true);
+            /* Set limit for maxium users */
+            if (res.data.results.length > 100)
+            {
+                setMoreData(false);
+                console.log(moreData);
+            }
+            console.log("data length" + userData.users.length);
+            setLoading(true);
+        } catch (error) {
+            console.log(error);
+            dispatch(fetchUsersFailure(error.message));
+            setLoading(false);
         }
     }
 
@@ -39,20 +50,16 @@ const Home = () => {
     }
 
     useEffect(() => {
-        console.log("Fetch More Data length "+userData.users.length);    
-        dispatch(fetchUsers(Nationality, results, page));
-    }, [page, Nationality]);
+        getContacts();
+    }, [results, Nationality]);
 
-    return userData.loading ? (
-        <Row type="flex" justify="center" align="middle" >
+    return !loading ? (
+        <Row type="flex" justify="center" align="middle" style={{ minHeight: '100vh' }}>
             <Col span={12} offset={12}>
                 <Spin size={"large"} />
             </Col>
-        </Row>)
-        : userData.error ? (
-            <h2>{userData.error}</h2>
-        )
-        : (
+        </Row>) :
+        (
             <>
                 <br />
                 <Row>
@@ -64,15 +71,16 @@ const Home = () => {
                                 enterButton="Search"
                                 size="large"
                                 onSearch={onSearch}
+                                style={{ width: "100%" }}
                             />
                         </Space>
                     </Col>
                 </Row>
                 <br />
 
-                <InfiniteScroll dataLength={userData.users.length} next={() => fetchMoreData()} hasMore={moreData}
+                <InfiniteScroll dataLength={userData.users.length} next={() => setResults(results+50)} hasMore={moreData}
                     endMessage={
-                        <p style={{ textAlign: "center" }} >
+                        <p style={{ textAlign: "center" }}>
                             <b>End of user catalogue!</b>
                         </p>}
                     loader={<Row type="flex" justify="center" align="middle" style={{ minHeight: '100vh' }}>
