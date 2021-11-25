@@ -5,8 +5,6 @@ import Home from "./containers/Home.jsx";
 import Settings from "./containers/Settings.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
-//import "./main.css";
-import "../src/index.less";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary.js";
 
 function App() {
