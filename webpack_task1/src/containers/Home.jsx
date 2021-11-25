@@ -6,7 +6,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
-import { fetchUsers } from '../redux/actions/userActions.js'
+import { fetchUsers } from '../redux/actions/userActions.js';
+import "../main.css"
 
 
 const Home = () => {
@@ -48,7 +49,8 @@ const Home = () => {
         )
             : (
                 <Spin size={"large"} spinning={userData.loading}>
-                    <br />
+                    
+                    <div className="searchBar" >
                     <Row>
                         <Col span={12} offset={17}>
                             <Space direction="vertical">
@@ -63,6 +65,7 @@ const Home = () => {
                             </Space>
                         </Col>
                     </Row>
+                    </div>
                     <br />
 
                     <InfiniteScroll dataLength={userData.users.length} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
