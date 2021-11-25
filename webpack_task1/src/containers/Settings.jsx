@@ -3,8 +3,8 @@ import { Select, Button } from 'antd';
 import { Row, Col } from 'antd';
 const { Option } = Select;
 import { NavLink } from "react-router-dom";
-import 'antd/dist/antd.css';
-import { setNationality } from "../redux/actions";
+import "antd/dist/antd.css";
+import { setNationality } from "../redux/actions/nationality.js";
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -23,18 +23,6 @@ function Settings(props) {
         setNat(value);
     }
 
-    function onBlur() {
-        console.log('blur');
-    }
-
-    function onFocus() {
-        console.log('focus');
-    }
-
-    function onSearch(val) {
-        console.log('search:', val);
-    }
-
     return (
         <>
             <br />
@@ -44,17 +32,14 @@ function Settings(props) {
                     <h1>You choose {changeNationality} as Nationality</h1>
                     <Select
                         showSearch
-                        style={{ width: 200 }}
                         placeholder="Select a nationality"
                         optionFilterProp="children"
                         onChange={onChange}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        onSearch={onSearch}
                         filterOption={(input, option) =>
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
+                        <Option value="">default</Option>
                         <Option value="AU">AU</Option>
                         <Option value="BR">BR</Option>
                         <Option value="CA">CA</Option>

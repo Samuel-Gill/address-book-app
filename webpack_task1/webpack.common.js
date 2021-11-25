@@ -22,13 +22,13 @@ module.exports = {
         test: /\.(less|css)$/,
         use: [
           {
-            loader: "style-loader",
+            loader: "style-loader", //3. Inject styles into DOM
           },
           {
-            loader: "css-loader",
+            loader: "css-loader",  //2. Turns css into commonjs
           },
           {
-            loader: "less-loader",
+            loader: "less-loader", //1. Truns sass into css
             options: {
               lessOptions: {
                 javascriptEnabled: true
