@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import Contact from '../components/Home/Contact';
@@ -7,12 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
 import { fetchUsers } from '../redux/actions/userActions.js';
-import "../main.css"
-
 
 const Home = () => {
     const [searchInput, setSearchInput] = useState('');
-    const [dataLength, setDataLength] = useState(50);
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
     const [results, setResults] = useState(10);
