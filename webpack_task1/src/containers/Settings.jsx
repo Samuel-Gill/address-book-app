@@ -23,18 +23,6 @@ function Settings(props) {
         setNat(value);
     }
 
-    function onBlur() {
-        console.log('blur');
-    }
-
-    function onFocus() {
-        console.log('focus');
-    }
-
-    function onSearch(val) {
-        console.log('search:', val);
-    }
-
     return (
         <>
             <br />
@@ -47,9 +35,6 @@ function Settings(props) {
                         placeholder="Select a nationality"
                         optionFilterProp="children"
                         onChange={onChange}
-                        onFocus={onFocus}
-                        onBlur={onBlur}
-                        onSearch={onSearch}
                         filterOption={(input, option) =>
                             option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }

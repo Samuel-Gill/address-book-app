@@ -1,7 +1,8 @@
 import {
     FETCH_USERS_REQUEST,
     FETCH_USERS_SUCCESS,
-    FETCH_USERS_FAILURE
+    FETCH_USERS_FAILURE,
+    CHANGE_NATIONALITY
   } from '../user/userTypes.js'
   
   const initialState = {
@@ -21,6 +22,12 @@ import {
         return {
           loading: false,
           users: [...state.users,...action.payload],
+          error: ''
+        }
+      case CHANGE_NATIONALITY:
+        return {
+          loading: false,
+          users: action.payload,
           error: ''
         }
       case FETCH_USERS_FAILURE:
