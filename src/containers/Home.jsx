@@ -5,8 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
-import { fetchUsers } from '../redux/actions/userActions.js';
-import { updateNat } from '../redux/actions/userActions.js';
+import { fetchUsers } from '../redux/actions/user.js';
+import { updateNat } from '../redux/actions/user.js';
 
 const Home = () => {
     const [searchInput, setSearchInput] = useState('');

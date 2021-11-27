@@ -1,5 +1,5 @@
 import changeNationality from "./nationality.js";
-import userReducer from '../reducers/userReducer.js';
+import userReducer from './user.js';
 
 import { combineReducers } from "redux";
 

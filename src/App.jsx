@@ -1,5 +1,5 @@
 import React from "react";
-import Menu from "./components/layout/Menu.jsx";
+import Layout from "./components/layout/Layout.jsx";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home.jsx";
 import Settings from "./containers/Settings.jsx";
@@ -12,14 +12,12 @@ function App() {
         <>
             <Provider store={store}>
                 <ErrorBoundary>
-                    <Menu />
-                </ErrorBoundary>
-
-                <ErrorBoundary>
-                    <Switch>
-                        <Route exact path='/' component={() => <><Home /></>} />
-                        <Route exact path='/settings' component={() => <><Settings /></>} />
-                    </Switch>
+                    <Layout className="layout-main">
+                        <Switch>
+                            <Route exact path='/' component={() => <><Home /></>} />
+                            <Route exact path='/settings' component={() => <><Settings /></>} />
+                        </Switch>
+                    </Layout>
                 </ErrorBoundary>
             </Provider>
         </>
