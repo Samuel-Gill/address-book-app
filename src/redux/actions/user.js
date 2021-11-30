@@ -4,10 +4,10 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
   CHANGE_NATIONALITY
-} from '../user/userTypes.js'
+} from '../types/userTypes.js'
 
-export const fetchUsers = (nat='CH',results=50,page=1) => {
-  console.log("Fetch results "+results);
+export const fetchUsers = (nat = 'CH', results = 50, page = 1) => {
+  console.log("Fetch results " + results);
   return (dispatch) => {
     dispatch(fetchUsersRequest())
     axios
@@ -22,10 +22,10 @@ export const fetchUsers = (nat='CH',results=50,page=1) => {
         dispatch(fetchUsersFailure(error.message))
       })
   }
-} 
+}
 
-export const updateNat = (nat='CH',results=50,page=1) => {
-  console.log("Fetch results "+results);
+export const updateNat = (nat = 'CH', results = 50, page = 1) => {
+  console.log("Fetch results " + results);
   return (dispatch) => {
     dispatch(fetchUsersRequest())
     axios
@@ -40,7 +40,7 @@ export const updateNat = (nat='CH',results=50,page=1) => {
         dispatch(fetchUsersFailure(error.message))
       })
   }
-} 
+}
 
 export const fetchUsersRequest = () => {
   return {
