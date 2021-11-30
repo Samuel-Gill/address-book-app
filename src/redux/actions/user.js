@@ -4,7 +4,7 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
   CHANGE_NATIONALITY
-} from '../types/userTypes.js'
+} from '../types/usertypes.js'
 
 export const fetchUsers = (nat = 'CH', results = 50, page = 1) => {
   console.log("Fetch results " + results);

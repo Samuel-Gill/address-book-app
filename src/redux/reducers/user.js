@@ -3,7 +3,7 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
   CHANGE_NATIONALITY
-} from '../types/userTypes.js'
+} from '../types/usertypes.js'
 
 const initialState = {
   loading: false,
