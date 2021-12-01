@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Select, Button } from 'antd';
+import { Select, Button, Typography } from 'antd';
 import { Row, Col } from 'antd';
 const { Option } = Select;
 import { NavLink } from "react-router-dom";
 import "antd/dist/antd.css";
 import { setNationality } from "../redux/actions/nationality.js";
 import { useSelector, useDispatch } from "react-redux";
-
+const { Title } = Typography;
 
 
 function Settings(props) {
@@ -28,8 +28,7 @@ function Settings(props) {
             <br />
             <Row>
                 <Col span={12} offset={10}>
-
-                    <h1>You choose {changeNationality} as Nationality</h1>
+                    <Title level={3}>You choose {changeNationality} as Nationality</Title>
                     <Select
                         showSearch
                         placeholder="Select a nationality"

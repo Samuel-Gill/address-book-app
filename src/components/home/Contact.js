@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Button, Modal } from 'antd';
+import { Card, Button, Modal, Typography, Divider } from 'antd';
 import { useState } from 'react';
 const { Meta } = Card;
+const { Text } = Typography;
 
 const Contact = ({ contact }) => {
 
@@ -23,13 +24,13 @@ const Contact = ({ contact }) => {
         <>
             <Card
                 hoverable
-                style={{ width: 240 }}
                 cover={<img alt="example" src={contact.picture.large} />}
             >
                 <Meta title={`${contact.name.first + " " + contact.name.last}`} />
-                <p>{contact.email}</p>
-                <p>Nationality: {contact.nat}</p>
-                <p>User Name: {contact.login.username}</p>
+                <Text>{contact.email}</Text>
+                <Text>Nationality: {contact.nat}</Text>
+                <Text>User Name: {contact.login.username}</Text>
+                <Divider />
                 <Button type="primary" onClick={showModal}>
                     Get Details
                 </Button>
@@ -40,15 +41,15 @@ const Contact = ({ contact }) => {
                         cover={<img alt="user_pic" src={contact.picture.large} />}
                     >
                         <Meta title={`${contact.name.first + " " + contact.name.last}`} />
-                        <p>Nationality: {contact.nat}</p>
-                        <p>Email: {contact.email}</p>
-                        <p>Phone: {contact.cell}</p>
-                        <p>Cell: {contact.phone}</p>
-                        <p>Street: {`${contact.location.street.number + " " + contact.location.street.name}`}</p>
-                        <p>City: {contact.location.city}</p>
-                        <p>State: {contact.location.state}</p>
-                        <p>Postcode: {contact.location.postcode}</p>
-                        <p>Country: {contact.location.country}</p>
+                        <Text>Nationality: {contact.nat}</Text>
+                        <Text>Email: {contact.email}</Text>
+                        <Text>Phone: {contact.cell}</Text>
+                        <Text>Cell: {contact.phone}</Text>
+                        <Text>Street: {`${contact.location.street.number + " " + contact.location.street.name}`}</Text>
+                        <Text>City: {contact.location.city}</Text>
+                        <Text>State: {contact.location.state}</Text>
+                        <Text>Postcode: {contact.location.postcode}</Text>
+                        <Text>Country: {contact.location.country}</Text>
                     </Card>
                 </Modal>
             </Card>
