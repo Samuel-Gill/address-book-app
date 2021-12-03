@@ -19,7 +19,6 @@ function Settings(props) {
     const dispatch = useDispatch();
 
     function onChange(value) {
-        console.log(`selected ${value}`);
         setNat(value);
     }
 
