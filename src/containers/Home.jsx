@@ -7,6 +7,8 @@ import { Input, Space, Spin } from 'antd';
 const { Search } = Input;
 import { fetchUsers } from '../redux/actions/user.js';
 import { updateNat } from '../redux/actions/user.js';
+//import { usersSelector, filteredUsersSelector } from '../redux/selectors/selectors.js';
+import { filteredUsers } from '../redux/selectors/selectors.js';
 
 const Home = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -17,6 +19,10 @@ const Home = () => {
     // it alternative to the useContext hooks in react / consumer from context API
     const Nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
+    //const search = useSelector(state => state.user.search);
+    //const filteredUsers = useSelector(state => state.filteredUsers);
+    //const users = usersSelector(state);
+    //const filteredUsers = filteredUsersSelector(state);
 
     const dispatch = useDispatch();
 
@@ -30,8 +36,9 @@ const Home = () => {
         }
     }
 
-    const onSearch = value => {
-        setSearchInput(value.target.value.toLowerCase());
+    const onSearch = e => {
+        setSearchInput(e.target.value.toLowerCase());
+        //dispatch({ type: "CHANGE_SEARCH", payload: e.target.value.toLowerCase() });
     }
 
     useEffect(() => {
@@ -74,7 +81,7 @@ const Home = () => {
                 >
                     {
                         <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 16]}>
-                            {userData.users.filter((item) => `${item.name.title} ${item.name.first} ${item.name.last}`.toLowerCase().includes(searchInput)).map((contact) => (
+                            {filteredUsers(userData, searchInput).map((contact) => (
                                 <Col className="gutter-row" xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }} key={contact.login.uuid}>
                                     <Contact contact={contact} />
                                 </Col>

@@ -1,11 +1,11 @@
 import React from "react";
-import Layout from "./components/layout/Layout.jsx";
+import Layout from "./components/common/layout/Layout.jsx";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/home.jsx";
 import Settings from "./containers/Settings.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
-import ErrorBoundary from "./components/errorboundary/ErrorBoundary.js";
+import ErrorBoundary from "./components/common/errorboundary/ErrorBoundary.js";
 
 function App() {
     return (
