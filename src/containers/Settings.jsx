@@ -4,8 +4,9 @@ import { Row, Col } from 'antd';
 const { Option } = Select;
 import { NavLink } from "react-router-dom";
 import "antd/dist/antd.css";
-import { setNationality } from "../redux/actions/nationality.js";
+import { Nationality } from "../redux/actions/settings.js";
 import { useSelector, useDispatch } from "react-redux";
+import { clearUsers } from "../redux/actions/user.js";
 const { Title } = Typography;
 
 
@@ -14,11 +15,12 @@ function Settings(props) {
     const [nat, setNat] = useState();
 
     // it alternative to the useContext hooks in react / consumer from context API
-    const changeNationality = useSelector(state => state.changeNationality);
+    const nationality = useSelector(state => state.Nationality);
 
     const dispatch = useDispatch();
 
     function onChange(value) {
+        dispatch(clearUsers());
         setNat(value);
     }
 
@@ -27,7 +29,7 @@ function Settings(props) {
             <br />
             <Row>
                 <Col span={12} offset={10}>
-                    <Title level={3}>You choose {changeNationality} as Nationality</Title>
+                    <Title level={3}>You choose {nationality} as Nationality</Title>
                     <Select
                         showSearch
                         placeholder="Select a nationality"
@@ -55,7 +57,7 @@ function Settings(props) {
                         <Option value="NZ">NZ</Option>
                     </Select>
                     <NavLink to="/">
-                        <Button type="primary" onClick={() => dispatch(setNationality(nat))}>
+                        <Button type="primary" onClick={() => dispatch(Nationality(nat))}>
                             Search
                         </Button>
                     </NavLink>

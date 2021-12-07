@@ -4,30 +4,24 @@ import Contact from '../components/home/Contact';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin } from 'antd';
-const { Search } = Input;
 import { fetchUsers } from '../redux/actions/user.js';
-import { updateNat } from '../redux/actions/user.js';
-//import { usersSelector, filteredUsersSelector } from '../redux/selectors/selectors.js';
-import { filteredUsers } from '../redux/selectors/selectors.js';
+import { filteredUsers } from '../redux/selectors/filter.js';
+const { Search } = Input;
 
 const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
-    const [results, setResults] = useState(10);
+    const [results, setResults] = useState(100);
 
     // it alternative to the useContext hooks in react / consumer from context API
     const Nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
-    //const search = useSelector(state => state.user.search);
-    //const filteredUsers = useSelector(state => state.filteredUsers);
-    //const users = usersSelector(state);
-    //const filteredUsers = filteredUsersSelector(state);
 
     const dispatch = useDispatch();
 
     const fetchMoreData = () => {
-        if (userData.users.length > 100) {
+        if (userData.users.length > 1000) {
             setMoreData(false);
         }
         else {
@@ -38,16 +32,11 @@ const Home = () => {
 
     const onSearch = e => {
         setSearchInput(e.target.value.toLowerCase());
-        //dispatch({ type: "CHANGE_SEARCH", payload: e.target.value.toLowerCase() });
     }
 
     useEffect(() => {
         dispatch(fetchUsers(Nationality, results, page));
     }, [page, Nationality]);
-
-    useEffect(() => {
-        dispatch(updateNat(Nationality, results, page));
-    }, [Nationality]);
 
     return userData.error ? (
         <h2>{userData.error}</h2>
