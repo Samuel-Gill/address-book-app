@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin } from 'antd';
 import { fetchUsers } from '../redux/actions/user.js';
-import { filteredUsers } from '../redux/selectors/filter.js';
+import { filterSelector } from '../redux/selectors/filter.js';
 const { Search } = Input;
 
 const Home = () => {
@@ -15,18 +15,21 @@ const Home = () => {
     const [results, setResults] = useState(100);
 
     // it alternative to the useContext hooks in react / consumer from context API
-    const Nationality = useSelector(state => state.nationality);
+    const nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
+    const users = useSelector((state) => filterSelector(state, searchInput));
 
     const dispatch = useDispatch();
 
     const fetchMoreData = () => {
+
         if (userData.users.length > 1000) {
             setMoreData(false);
         }
         else {
             setPage(page + 1);
             setMoreData(true);
+            console.log(`user data length ${showUsers}`)
         }
     }
 
@@ -35,8 +38,8 @@ const Home = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchUsers(Nationality, results, page));
-    }, [page, Nationality]);
+        dispatch(fetchUsers(nationality, results, page));
+    }, [page, nationality]);
 
     return userData.error ? (
         <h2>{userData.error}</h2>
@@ -70,7 +73,7 @@ const Home = () => {
                 >
                     {
                         <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 16]}>
-                            {filteredUsers(userData, searchInput).map((contact) => (
+                            {users.map((contact) => (
                                 <Col className="gutter-row" xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }} key={contact.login.uuid}>
                                     <Contact contact={contact} />
                                 </Col>
