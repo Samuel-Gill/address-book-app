@@ -3,9 +3,10 @@ import { Row, Col } from 'antd';
 import Contact from '../components/home/Contact';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
-import { Input, Space, Spin } from 'antd';
+import { Input, Space, Spin, Typography } from 'antd';
 import { fetchUsers } from '../redux/actions/user.js';
 import { filterSelector } from '../redux/selectors/filter.js';
+const { Text } = Typography;
 const { Search } = Input;
 
 const Home = () => {
@@ -72,9 +73,7 @@ const Home = () => {
 
                 <InfiniteScroll dataLength={users.length} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
                     endMessage={
-                        <p style={{ textAlign: "center" }} >
-                            <b>End of user catalogue!</b>
-                        </p>}
+                        <Text strong>End of user catalogue!</Text>}
                 >
                     {
                         <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 16]}>
