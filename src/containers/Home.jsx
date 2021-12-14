@@ -65,7 +65,7 @@ const Home = () => {
                 </div>
                 <br />
 
-                <InfiniteScroll dataLength={userData.users.length} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
+                <InfiniteScroll dataLength={userData.users.length - 50} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
                     endMessage={
                         <p style={{ textAlign: "center" }} >
                             <b>End of user catalogue!</b>
