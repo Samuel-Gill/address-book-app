@@ -12,24 +12,29 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
+    const [show, setShow] = useState(50);
     const [results, setResults] = useState(100);
 
     // it alternative to the useContext hooks in react / consumer from context API
     const nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
-    const users = useSelector((state) => filterSelector(state, searchInput));
+    const users = useSelector((state) => filterSelector(state, searchInput, show));
 
     const dispatch = useDispatch();
 
     const fetchMoreData = () => {
-
+        //orignal length of store
+        console.log(`userData length ${userData.users.length}`)
+        //reduced length for display
+        console.log(`users length ${users.length}`)
         if (userData.users.length > 1000) {
             setMoreData(false);
         }
         else {
             setPage(page + 1);
             setMoreData(true);
-            console.log(`user data length ${showUsers}`)
+            setShow(show + 50);
+            //console.log(`users show length ${show}`)
         }
     }
 
@@ -65,7 +70,7 @@ const Home = () => {
                 </div>
                 <br />
 
-                <InfiniteScroll dataLength={userData.users.length - 50} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
+                <InfiniteScroll dataLength={users.length} next={() => searchInput == '' && fetchMoreData()} hasMore={moreData}
                     endMessage={
                         <p style={{ textAlign: "center" }} >
                             <b>End of user catalogue!</b>
