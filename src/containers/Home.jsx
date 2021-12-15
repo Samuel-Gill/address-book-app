@@ -13,29 +13,24 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
     const [moreData, setMoreData] = useState(true);
     const [page, setPage] = useState(1);
-    const [show, setShow] = useState(50);
     const [results, setResults] = useState(100);
+    const userLimit = -50;
 
     // it alternative to the useContext hooks in react / consumer from context API
     const nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
-    const users = useSelector((state) => filterSelector(state, searchInput, show));
+    const users = useSelector((state) => filterSelector(state, searchInput, userLimit));
 
     const dispatch = useDispatch();
 
     const fetchMoreData = () => {
-        //orignal length of store
-        console.log(`userData length ${userData.users.length}`)
-        //reduced length for display
-        console.log(`users length ${users.length}`)
+
         if (userData.users.length > 1000) {
             setMoreData(false);
         }
         else {
             setPage(page + 1);
             setMoreData(true);
-            setShow(show + 50);
-            //console.log(`users show length ${show}`)
         }
     }
 

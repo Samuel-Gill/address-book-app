@@ -7,7 +7,7 @@ import {
 } from '../types/usertypes.js'
 
 export const fetchUsers = (nat = 'CH', results = 50, page = 1) => {
-  //console.log("Fetch results " + results);
+
   if (page > 1) {
     results = 50;
   }
