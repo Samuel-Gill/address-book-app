@@ -1,10 +1,16 @@
-const initialState = ""; //changeNationatity to setNationality
+const initialState =
+{
+    nationality: "",
+}
 
-const Nationality = (state = initialState, action) => { //settings
+const Settings = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_NATIONALITY": return action.payload;
+        case "SET_NATIONALITY":
+            return {
+                nationality: action.payload
+            }
         default: return state;
     }
 }
 
-export default Nationality;
+export default Settings;

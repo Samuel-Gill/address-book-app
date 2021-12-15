@@ -28,7 +28,7 @@ module.exports = {
             loader: "css-loader",  //2. Turns css into commonjs
           },
           {
-            loader: "less-loader", //1. Truns sass into css
+            loader: "less-loader", //1. Truns less into css
             options: {
               lessOptions: {
                 javascriptEnabled: true
@@ -65,7 +65,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    port: 3050,
+    port: 5000,
     historyApiFallback: true,
   },
 };
