@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Space, Spin, Typography } from 'antd';
 import { fetchUsers } from '../redux/actions/user.js';
-import { filterSelector } from '../redux/selectors/filter.js';
+import { filterSelector, fetchMoreSelector } from '../redux/selectors/filter.js';
 const { Text } = Typography;
 const { Search } = Input;
 
@@ -20,12 +20,12 @@ const Home = () => {
     const nationality = useSelector(state => state.nationality);
     const userData = useSelector(state => state.user);
     const users = useSelector((state) => filterSelector(state, searchInput, userLimit));
+    const fetchMore = useSelector((state) => fetchMoreSelector(state));
 
     const dispatch = useDispatch();
 
     const fetchMoreData = () => {
-
-        if (userData.users.length > 1000) {
+        if (!fetchMore) {
             setMoreData(false);
         }
         else {
