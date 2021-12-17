@@ -3,7 +3,6 @@ import { Select, Button, Typography } from 'antd';
 import { Row, Col } from 'antd';
 const { Option } = Select;
 import { NavLink } from "react-router-dom";
-import "antd/dist/antd.css";
 import { Nationality } from "../redux/actions/settings.js";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUsers } from "../redux/actions/user.js";

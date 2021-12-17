@@ -9,18 +9,16 @@ import ErrorBoundary from "./components/common/errorboundary/ErrorBoundary.js";
 
 function App() {
     return (
-        <>
-            <Provider store={store}>
-                <ErrorBoundary>
-                    <Layout className="layout-main">
-                        <Switch>
-                            <Route exact path='/' component={() => <><Home /></>} />
-                            <Route exact path='/settings' component={() => <><Settings /></>} />
-                        </Switch>
-                    </Layout>
-                </ErrorBoundary>
-            </Provider>
-        </>
+        <Provider store={store}>
+            <ErrorBoundary>
+                <Layout className="layout-main">
+                    <Switch>
+                        <Route exact path='/' component={() => <><Home /></>} />
+                        <Route exact path='/settings' component={() => <><Settings /></>} />
+                    </Switch>
+                </Layout>
+            </ErrorBoundary>
+        </Provider>
     );
 }
 
