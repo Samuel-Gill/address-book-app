@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./components/common/layout/Layout.jsx";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./containers/home.jsx";
 import Settings from "./containers/Settings.jsx";
 import { Provider } from "react-redux";
@@ -12,10 +12,10 @@ function App() {
         <Provider store={store}>
             <ErrorBoundary>
                 <Layout className="layout-main">
-                    <Switch>
-                        <Route exact path='/' component={() => <><Home /></>} />
-                        <Route exact path='/settings' component={() => <><Settings /></>} />
-                    </Switch>
+                    <Routes>
+                        <Route exact path='/' element={<Home />} />
+                        <Route exact path='/settings' element={<Settings />} />
+                    </Routes>
                 </Layout>
             </ErrorBoundary>
         </Provider>
